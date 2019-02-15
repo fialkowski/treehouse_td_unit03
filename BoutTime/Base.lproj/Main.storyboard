@@ -37,11 +37,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="183" y="135"/>
         </scene>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="aWL-S9-OYG">
             <objects>
-                <viewController id="BzM-F7-L9G" sceneMemberID="viewController">
+                <viewController id="BzM-F7-L9G" customClass="GameViewController" customModule="BoutTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qMp-A9-d64">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,10 +240,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ay0-2N-J0w"/>
                     </view>
+                    <connections>
+                        <outlet property="firstRowLabel" destination="vsT-k9-gai" id="Knv-sY-b7F"/>
+                        <outlet property="fourthRowLabel" destination="aKn-IW-IdZ" id="K3m-O5-dTn"/>
+                        <outlet property="secondRowLabel" destination="g94-2z-Ydc" id="t7Z-cW-dki"/>
+                        <outlet property="thirdRowLabel" destination="1zV-pi-CDT" id="0Wz-LX-d0J"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jwz-Vq-uIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1428" y="135"/>
+            <point key="canvasLocation" x="1000" y="135"/>
         </scene>
     </scenes>
     <resources>
