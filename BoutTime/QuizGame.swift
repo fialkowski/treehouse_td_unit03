@@ -187,6 +187,17 @@ class AerospaceQuizGame: QuizGame {
         }
     }
     
+    func moveFact(_ sender: UIButton) { // FIXME: Doesn't work at the point. Won't complile because of this method.
+        switch sender.tag {
+        case OrderChangeButton.firstDown.rawValue, OrderChangeButton.secondUp.rawValue : {
+            // FIXME: Develop an implementatiokn
+            }
+        case OrderChangeButton.secondDown.rawValue, OrderChangeButton.thirdUp.rawValue :
+        case OrderChangeButton.thirdDown.rawValue, OrderChangeButton.fourthUp.rawValue :
+        default : break
+        }
+    }
+    
     private func getRandomFact() -> QuizGameFact {
         var infiniteLoopDebounce: Int = facts.count * 2
         var repeatLoopFlag: Bool = false
