@@ -10,6 +10,7 @@ import UIKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet var factRowViews: [UIView]!
     @IBOutlet weak var firstRowLabel: UILabel!
     @IBOutlet weak var secondRowLabel: UILabel!
     @IBOutlet weak var thirdRowLabel: UILabel!
@@ -50,6 +51,7 @@ class GameViewController: UIViewController {
                                                                               thirdRowDownButton,
                                                                               fourthRowUpButton])
         self.setOptionButtonsTags() // Setting Button tags, matching Enums for easier handling through the enum
+        self.setViewRoundCorners()
         quizGame.setQuizRound()
 
         // Do any additional setup after loading the view.
@@ -68,6 +70,13 @@ class GameViewController: UIViewController {
         thirdRowUpButton.tag = OrderChangeButton.thirdUp.rawValue
         thirdRowDownButton.tag = OrderChangeButton.thirdDown.rawValue
         fourthRowUpButton.tag = OrderChangeButton.fourthUp.rawValue
+    }
+    
+    private func setViewRoundCorners () {
+        for factRowView in factRowViews {
+            factRowView.layer.cornerRadius = 5
+            factRowView.layer.masksToBounds = true
+        }
     }
     
     /*

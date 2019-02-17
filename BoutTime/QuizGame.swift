@@ -140,7 +140,7 @@ class AerospaceQuizOrderButtonsHandler: QuizGameOrderButtonsHandler {
     func setIcons() {
         for button in buttons {
             let image = OrderChangeButton(rawValue: button.tag)?.icon(isSelected: true)
-            button.setImage(image, for: .normal)
+            button.setImage(image, for: .selected)
         }
     }
 }

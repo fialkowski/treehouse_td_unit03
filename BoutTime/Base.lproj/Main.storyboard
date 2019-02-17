@@ -269,6 +269,10 @@
                         <outlet property="thirdRowDownButton" destination="F6u-4u-mgo" id="4Hs-Cz-31G"/>
                         <outlet property="thirdRowLabel" destination="1zV-pi-CDT" id="0Wz-LX-d0J"/>
                         <outlet property="thirdRowUpButton" destination="C2U-8X-S6X" id="3aF-vn-YQO"/>
+                        <outletCollection property="factRowViews" destination="vZR-c5-mHR" collectionClass="NSMutableArray" id="oLM-46-s20"/>
+                        <outletCollection property="factRowViews" destination="O4q-Ou-MVA" collectionClass="NSMutableArray" id="gv9-nW-nYV"/>
+                        <outletCollection property="factRowViews" destination="cKA-A7-3t0" collectionClass="NSMutableArray" id="SU2-GM-uMk"/>
+                        <outletCollection property="factRowViews" destination="rnc-sY-9uy" collectionClass="NSMutableArray" id="El6-Eb-e9W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jwz-Vq-uIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
