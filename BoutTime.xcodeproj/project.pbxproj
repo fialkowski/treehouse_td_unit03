@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8AB0E0A122166B8E008448F9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB0E0A022166B8E008448F9 /* GameViewController.swift */; };
 		8AB0E0A322166CDD008448F9 /* QuizGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB0E0A222166CDD008448F9 /* QuizGame.swift */; };
+		8AB0E0A5221867C2008448F9 /* aerospaceDiscoveryQuizFacts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AB0E0A4221867C2008448F9 /* aerospaceDiscoveryQuizFacts.plist */; };
 		8AC2B15E2215006F00314B93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2B15D2215006F00314B93 /* AppDelegate.swift */; };
 		8AC2B1602215006F00314B93 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2B15F2215006F00314B93 /* SplashViewController.swift */; };
 		8AC2B1632215006F00314B93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AC2B1612215006F00314B93 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		8AB0E0A022166B8E008448F9 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8AB0E0A222166CDD008448F9 /* QuizGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGame.swift; sourceTree = "<group>"; };
+		8AB0E0A4221867C2008448F9 /* aerospaceDiscoveryQuizFacts.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = aerospaceDiscoveryQuizFacts.plist; sourceTree = "<group>"; };
 		8AC2B15A2215006F00314B93 /* BoutTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoutTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC2B15D2215006F00314B93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AC2B15F2215006F00314B93 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				8AC2B1642215007500314B93 /* Assets.xcassets */,
 				8AC2B1662215007500314B93 /* BoutTime.storyboard */,
 				8AC2B1692215007500314B93 /* Info.plist */,
+				8AB0E0A4221867C2008448F9 /* aerospaceDiscoveryQuizFacts.plist */,
 			);
 			path = BoutTime;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			files = (
 				8AC2B1682215007500314B93 /* BoutTime.storyboard in Resources */,
 				8AC2B1652215007500314B93 /* Assets.xcassets in Resources */,
+				8AB0E0A5221867C2008448F9 /* aerospaceDiscoveryQuizFacts.plist in Resources */,
 				8AC2B1632215006F00314B93 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

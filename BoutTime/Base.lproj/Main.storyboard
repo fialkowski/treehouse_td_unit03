@@ -68,6 +68,9 @@
                                                             <constraint firstAttribute="width" secondItem="Ofe-OE-41u" secondAttribute="height" multiplier="35:100" id="E3H-dw-5rV"/>
                                                         </constraints>
                                                         <state key="normal" image="downFull"/>
+                                                        <connections>
+                                                            <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="asd-21-UFx"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -106,10 +109,16 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1d4-Jn-Nf3" userLabel="secondRowUpButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="51.666666666666664" height="73.666666666666671"/>
                                                                 <state key="normal" image="upHalf"/>
+                                                                <connections>
+                                                                    <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="krF-Uz-K4b"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SsR-kB-w7A" userLabel="secondRowDownButton">
                                                                 <rect key="frame" x="0.0" y="73.666666666666657" width="51.666666666666664" height="73.666666666666657"/>
                                                                 <state key="normal" image="downHalf"/>
+                                                                <connections>
+                                                                    <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="Zxd-yH-dTW"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -150,10 +159,16 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2U-8X-S6X" userLabel="thirdRowUpButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="51.666666666666664" height="73.666666666666671"/>
                                                                 <state key="normal" image="upHalf"/>
+                                                                <connections>
+                                                                    <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="VgA-2v-5tp"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6u-4u-mgo" userLabel="thirdRowDownButton">
                                                                 <rect key="frame" x="0.0" y="73.666666666666686" width="51.666666666666664" height="74"/>
                                                                 <state key="normal" image="downHalf"/>
+                                                                <connections>
+                                                                    <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="XMx-nH-BlT"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -194,6 +209,9 @@
                                                             <constraint firstAttribute="width" secondItem="mIe-AG-MwL" secondAttribute="height" multiplier="35:100" id="E0p-S6-zMG"/>
                                                         </constraints>
                                                         <state key="normal" image="upFull"/>
+                                                        <connections>
+                                                            <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="t9F-Yf-Ml0"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -241,10 +259,16 @@
                         <viewLayoutGuide key="safeArea" id="ay0-2N-J0w"/>
                     </view>
                     <connections>
+                        <outlet property="firstRowDownButton" destination="Ofe-OE-41u" id="zpQ-IO-FBs"/>
                         <outlet property="firstRowLabel" destination="vsT-k9-gai" id="Knv-sY-b7F"/>
                         <outlet property="fourthRowLabel" destination="aKn-IW-IdZ" id="K3m-O5-dTn"/>
+                        <outlet property="fourthRowUpButton" destination="mIe-AG-MwL" id="zHr-0X-Rof"/>
+                        <outlet property="secondRowDownButton" destination="SsR-kB-w7A" id="Wgx-X5-wxm"/>
                         <outlet property="secondRowLabel" destination="g94-2z-Ydc" id="t7Z-cW-dki"/>
+                        <outlet property="secondRowUpButton" destination="1d4-Jn-Nf3" id="8iN-lj-gaV"/>
+                        <outlet property="thirdRowDownButton" destination="F6u-4u-mgo" id="4Hs-Cz-31G"/>
                         <outlet property="thirdRowLabel" destination="1zV-pi-CDT" id="0Wz-LX-d0J"/>
+                        <outlet property="thirdRowUpButton" destination="C2U-8X-S6X" id="3aF-vn-YQO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jwz-Vq-uIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
