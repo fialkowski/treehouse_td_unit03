@@ -50,14 +50,13 @@ class GameViewController: UIViewController {
                                                                               thirdRowDownButton,
                                                                               fourthRowUpButton])
         self.setOptionButtonsTags() // Setting Button tags, matching Enums for easier handling through the enum
+        quizGame.setQuizRound()
 
         // Do any additional setup after loading the view.
     }
     
     @IBAction func orderButtonPressed(_ sender: UIButton) {
         quizGame.updateScreen()
-        quizGame.setQuizRound()
-        orderButtonsHandler?.setIcons()
     }
     
     // MARK: - Helper methods
