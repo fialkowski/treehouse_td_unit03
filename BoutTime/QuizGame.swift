@@ -64,31 +64,38 @@ protocol QuizGameFact {
     init(event desctription: String, at date: Date)
 }
 
-protocol QuizGameOrderButtonsHandler {
-    var buttons: [UIButton] { get }
+protocol QuizGameButtonsHandler {
+    var orderButtons: [UIButton] { get }
+    var controlButton: UIButton { get }
     
-    init( buttons: [UIButton])
+    init(orderButtons: [UIButton], controlButton: UIButton)
     
     func setIcons ()
+    func setTimerScreen()
+    func setResultScreen(forAnswer answer: Bool)
 }
 
 protocol QuizGame {
-    //var buttonsHandler: QuizGameOrderButtonsHandler { get }
-    var firstRowFactLabel: UILabel? { get }
-    var secondRowFactLabel: UILabel? { get }
-    var thirdRowFactLabel: UILabel? { get }
-    var fourthRowFactLabel: UILabel? { get }
+    var buttonsHandler: QuizGameButtonsHandler { get }
+    var firstRowFactLabel: UILabel { get }
+    var secondRowFactLabel: UILabel { get }
+    var thirdRowFactLabel: UILabel { get }
+    var fourthRowFactLabel: UILabel { get }
     var facts: [QuizGameFact] { get }
+    var timer: CountdownTimer { get }
     
-    init (facts: [QuizGameFact])
+    init (facts: [QuizGameFact],
+          firstRowFactLabel: UILabel,
+          secondRowFactLabel: UILabel,
+          thirdRowFactLabel: UILabel,
+          fourthRowFactLabel: UILabel,
+          timerLabel: UILabel,
+          buttonsHandler: QuizGameButtonsHandler)
     
-    func setLabels(firstRowFactLabel: UILabel,
-        secondRowFactLabel: UILabel,
-        thirdRowFactLabel: UILabel,
-        fourthRowFactLabel: UILabel)
-    
-    func updateScreen ()
+    func moveFact(_ sender: UIButton)
     func setQuizRound ()
+    func checkScreen()
+    func shakeAction()
 }
 
 struct AerospaceFact: QuizGameFact {
@@ -130,71 +137,128 @@ class FactsUnarchiver {
     }
 }
 
-class AerospaceQuizOrderButtonsHandler: QuizGameOrderButtonsHandler {
-    var buttons: [UIButton]
+class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
+    var orderButtons: [UIButton]
+    var controlButton: UIButton
     
-    required init(buttons: [UIButton]) {
-        self.buttons = buttons
+    required init(orderButtons: [UIButton], controlButton: UIButton) {
+        self.orderButtons = orderButtons
+        self.controlButton = controlButton
     }
     
     func setIcons() {
-        for button in buttons {
-            let image = OrderChangeButton(rawValue: button.tag)?.icon(isSelected: true)
-            button.setImage(image, for: .selected)
+        for orderButton in orderButtons {
+            let image = OrderChangeButton(rawValue: orderButton.tag)?.icon(isSelected: true)
+            orderButton.setImage(image, for: .selected)
         }
+    }
+    
+    func setTimerScreen() {
+        for orderButton in orderButtons {
+            orderButton.isEnabled = true
+        }
+        controlButton.isHidden = true
+    }
+    
+    func setResultScreen(forAnswer answer: Bool) {
+        for orderButton in orderButtons {
+            orderButton.isEnabled = false
+        }
+        showControlButton(forAnswer: answer)
+    }
+    
+    private func showControlButton(forAnswer answer: Bool) {
+        switch answer {
+        case true: controlButton.setImage(UIImage(named: "nextRoundSuccess"), for: .normal)
+        case false: controlButton.setImage(UIImage(named: "nextRoundFail"), for: .normal)
+        }
+        controlButton.isHidden = false
     }
 }
 
 class AerospaceQuizGame: QuizGame {
-    var firstRowFactLabel: UILabel?
-    var secondRowFactLabel: UILabel?
-    var thirdRowFactLabel: UILabel?
-    var fourthRowFactLabel: UILabel?
-    //var buttonsHandler: QuizGameOrderButtonsHandler
+    var buttonsHandler: QuizGameButtonsHandler
+    var firstRowFactLabel: UILabel
+    var secondRowFactLabel: UILabel
+    var thirdRowFactLabel: UILabel
+    var fourthRowFactLabel: UILabel
     var facts: [QuizGameFact]
     var usedFacts: [QuizGameFact] = []
+    var timer: CountdownTimer
      
-    required init(facts: [QuizGameFact]) {
+    required init(facts: [QuizGameFact],
+                  firstRowFactLabel: UILabel,
+                  secondRowFactLabel: UILabel,
+                  thirdRowFactLabel: UILabel,
+                  fourthRowFactLabel: UILabel,
+                  timerLabel: UILabel,
+                  buttonsHandler: QuizGameButtonsHandler) {
         self.facts = facts
-    }
-    
-    func setLabels(firstRowFactLabel: UILabel,
-                   secondRowFactLabel: UILabel,
-                   thirdRowFactLabel: UILabel,
-                   fourthRowFactLabel: UILabel) {
         self.firstRowFactLabel = firstRowFactLabel
         self.secondRowFactLabel = secondRowFactLabel
         self.thirdRowFactLabel = thirdRowFactLabel
         self.fourthRowFactLabel = fourthRowFactLabel
-    }
-    
-    func updateScreen() {
-        print(facts)
+        self.buttonsHandler = buttonsHandler
+        timer = CountdownTimer(timerLabel: timerLabel)
     }
     
     func setQuizRound () {
-        if let firstRowFactLabel = firstRowFactLabel {
-            firstRowFactLabel.text = getRandomFact().description
-        }
-        if let secondRowFactLabel = secondRowFactLabel {
-            secondRowFactLabel.text = getRandomFact().description
-        }
-        if let thirdRowFactLabel = thirdRowFactLabel {
-            thirdRowFactLabel.text = getRandomFact().description
-        }
-        if let fourthRowFactLabel = fourthRowFactLabel {
-            fourthRowFactLabel.text = getRandomFact().description
+        timer.set(quizGame: self)
+        firstRowFactLabel.text = getRandomFact().description
+        secondRowFactLabel.text = getRandomFact().description
+        thirdRowFactLabel.text = getRandomFact().description
+        fourthRowFactLabel.text = getRandomFact().description
+        buttonsHandler.setTimerScreen()
+        timer.startTimer()
+    }
+    
+    func moveFact(_ sender: UIButton) {
+        switch sender.tag {
+        case OrderChangeButton.firstDown.rawValue, OrderChangeButton.secondUp.rawValue :
+            do {
+                let factKeyBuffer = firstRowFactLabel.text
+                firstRowFactLabel.text = secondRowFactLabel.text
+                secondRowFactLabel.text = factKeyBuffer
+            }
+        case OrderChangeButton.secondDown.rawValue, OrderChangeButton.thirdUp.rawValue :
+            do {
+                let factKeyBuffer = secondRowFactLabel.text
+                secondRowFactLabel.text = thirdRowFactLabel.text
+                thirdRowFactLabel.text = factKeyBuffer
+            }
+        case OrderChangeButton.thirdDown.rawValue, OrderChangeButton.fourthUp.rawValue :
+            do {
+                let factKeyBuffer = thirdRowFactLabel.text
+                thirdRowFactLabel.text = fourthRowFactLabel.text
+                fourthRowFactLabel.text = factKeyBuffer
+            }
+        default : break
         }
     }
     
-    func moveFact(_ sender: UIButton) { // FIXME: Doesn't work at the point. Won't complile because of this method.
-        switch sender.tag {
-        case OrderChangeButton.firstDown.rawValue, OrderChangeButton.secondUp.rawValue : {
-            // FIXME: Develop an implementatiokn
+    func checkScreen() {
+        buttonsHandler.setResultScreen(forAnswer: isInCorrectOrder())
+    }
+    
+    func shakeAction() {
+        timer.endTimer()
+    }
+    
+    private func isInCorrectOrder() -> Bool {
+        var factDates = facts.filter{$0.description == firstRowFactLabel.text}
+        factDates += facts.filter{$0.description == secondRowFactLabel.text}
+        factDates += facts.filter{$0.description == thirdRowFactLabel.text}
+        factDates += facts.filter{$0.description == fourthRowFactLabel.text}
+        if factDates.count == 4 {
+            if (factDates[0].date <= factDates[1].date) &&
+               (factDates[1].date <= factDates[2].date) &&
+               (factDates[2].date <= factDates[3].date) {
+                return true
+            } else {
+                return false
             }
-        case OrderChangeButton.secondDown.rawValue, OrderChangeButton.thirdUp.rawValue :
-        case OrderChangeButton.thirdDown.rawValue, OrderChangeButton.fourthUp.rawValue :
-        default : break
+        } else {
+            return false
         }
     }
     
@@ -220,7 +284,7 @@ class AerospaceQuizGame: QuizGame {
             usedFacts.append(returnFact)
             return returnFact
         }
-        return AerospaceFact(event: "This is an error in getRandomFact method", at: Date(timeIntervalSince1970: 0))
+        return AerospaceFact(event: "This is an error from getRandomFact method", at: Date(timeIntervalSince1970: 0))
     }
     
 }

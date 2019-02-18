@@ -242,23 +242,36 @@
                                     <constraint firstAttribute="height" constant="35" id="dpQ-Jy-hnl"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="nextRoundSuccess"/>
+                                <connections>
+                                    <action selector="controlButtonPressed" destination="BzM-F7-L9G" eventType="touchUpInside" id="9EQ-Do-JFx"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjO-7k-BMj" userLabel="timerLabel">
+                                <rect key="frame" x="170" y="670" width="74.333333333333314" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.031372549020000001" green="0.16862745100000001" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JeK-Df-TWt" firstAttribute="top" secondItem="0yf-vX-DOy" secondAttribute="bottom" constant="10" id="0GL-a6-pbv"/>
                             <constraint firstItem="ay0-2N-J0w" firstAttribute="bottom" secondItem="JeK-Df-TWt" secondAttribute="bottom" constant="13" id="8tB-7U-Nt3"/>
                             <constraint firstItem="ay0-2N-J0w" firstAttribute="trailing" secondItem="vtB-Se-Txi" secondAttribute="trailing" constant="10" id="AYq-A4-g2a"/>
+                            <constraint firstItem="JeK-Df-TWt" firstAttribute="top" secondItem="xjO-7k-BMj" secondAttribute="bottom" constant="17" id="Bt5-d2-3zb"/>
                             <constraint firstItem="vtB-Se-Txi" firstAttribute="top" secondItem="ay0-2N-J0w" secondAttribute="top" constant="10" id="CVB-kH-gDx"/>
                             <constraint firstItem="vtB-Se-Txi" firstAttribute="leading" secondItem="ay0-2N-J0w" secondAttribute="leading" constant="10" id="TM4-pu-rpa"/>
                             <constraint firstItem="0yf-vX-DOy" firstAttribute="top" secondItem="vtB-Se-Txi" secondAttribute="bottom" constant="13" id="XQf-QE-EgF"/>
                             <constraint firstItem="JeK-Df-TWt" firstAttribute="centerX" secondItem="qMp-A9-d64" secondAttribute="centerX" id="XUh-PK-5AU"/>
                             <constraint firstItem="0yf-vX-DOy" firstAttribute="centerX" secondItem="qMp-A9-d64" secondAttribute="centerX" id="f1K-Dr-evH"/>
+                            <constraint firstItem="xjO-7k-BMj" firstAttribute="top" secondItem="vtB-Se-Txi" secondAttribute="bottom" constant="20" id="j3Q-VC-dBR"/>
                             <constraint firstItem="vtB-Se-Txi" firstAttribute="centerX" secondItem="qMp-A9-d64" secondAttribute="centerX" id="rNB-CK-Vw6"/>
+                            <constraint firstItem="xjO-7k-BMj" firstAttribute="centerX" secondItem="qMp-A9-d64" secondAttribute="centerX" id="vVN-Kj-qlD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ay0-2N-J0w"/>
                     </view>
                     <connections>
+                        <outlet property="controlButton" destination="0yf-vX-DOy" id="AHP-bX-q0b"/>
                         <outlet property="firstRowDownButton" destination="Ofe-OE-41u" id="zpQ-IO-FBs"/>
                         <outlet property="firstRowLabel" destination="vsT-k9-gai" id="Knv-sY-b7F"/>
                         <outlet property="fourthRowLabel" destination="aKn-IW-IdZ" id="K3m-O5-dTn"/>
@@ -269,6 +282,7 @@
                         <outlet property="thirdRowDownButton" destination="F6u-4u-mgo" id="4Hs-Cz-31G"/>
                         <outlet property="thirdRowLabel" destination="1zV-pi-CDT" id="0Wz-LX-d0J"/>
                         <outlet property="thirdRowUpButton" destination="C2U-8X-S6X" id="3aF-vn-YQO"/>
+                        <outlet property="timerLabel" destination="xjO-7k-BMj" id="cv1-s8-c1Q"/>
                         <outletCollection property="factRowViews" destination="vZR-c5-mHR" collectionClass="NSMutableArray" id="oLM-46-s20"/>
                         <outletCollection property="factRowViews" destination="O4q-Ou-MVA" collectionClass="NSMutableArray" id="gv9-nW-nYV"/>
                         <outletCollection property="factRowViews" destination="cKA-A7-3t0" collectionClass="NSMutableArray" id="SU2-GM-uMk"/>

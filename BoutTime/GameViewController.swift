@@ -15,6 +15,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var secondRowLabel: UILabel!
     @IBOutlet weak var thirdRowLabel: UILabel!
     @IBOutlet weak var fourthRowLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
     
     @IBOutlet weak var firstRowDownButton: UIButton!
     @IBOutlet weak var secondRowUpButton: UIButton!
@@ -22,45 +23,64 @@ class GameViewController: UIViewController {
     @IBOutlet weak var thirdRowUpButton: UIButton!
     @IBOutlet weak var thirdRowDownButton: UIButton!
     @IBOutlet weak var fourthRowUpButton: UIButton!
+    @IBOutlet weak var controlButton: UIButton!
     
-    let quizGame: QuizGame
-    var orderButtonsHandler: QuizGameOrderButtonsHandler?
-    
+    var quizGame: QuizGame?
+    var buttonsHandler: QuizGameButtonsHandler?
+
     required init?(coder aDecoder: NSCoder) {
-        do {
-           let dictionary = try PlistConverter.dictionary(fromFile: "aerospaceDiscoveryQuizFacts", ofType: "plist")
-           let facts = try FactsUnarchiver.fetch(fromDictionary: dictionary)
-            self.quizGame = AerospaceQuizGame(facts: facts)
-        } catch let error {
-            fatalError("\(error)")
-        }
         super.init(coder: aDecoder)
     }
     
+    override func becomeFirstResponder() -> Bool { //MARK: Overriden to implement shake gesture listener
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) { //MARK: Overriden to implement shake gesture listener
+        if motion == .motionShake {
+            quizGame?.shakeAction()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        quizGame.setLabels(firstRowFactLabel: firstRowLabel,
-                           secondRowFactLabel: secondRowLabel,
-                           thirdRowFactLabel: thirdRowLabel,
-                           fourthRowFactLabel: fourthRowLabel)
-        self.orderButtonsHandler = AerospaceQuizOrderButtonsHandler(buttons: [firstRowDownButton,
-                                                                              secondRowUpButton,
-                                                                              secondRowDownButton,
-                                                                              thirdRowUpButton,
-                                                                              thirdRowDownButton,
-                                                                              fourthRowUpButton])
+        self.buttonsHandler = AerospaceQuizButtonsHandler(orderButtons: [firstRowDownButton,
+                                                                        secondRowUpButton,
+                                                                        secondRowDownButton,
+                                                                        thirdRowUpButton,
+                                                                        thirdRowDownButton,
+                                                                        fourthRowUpButton],
+                                                          controlButton: controlButton)
+        guard let buttonsHandler = buttonsHandler else {
+            fatalError("Buttons Handler couldn't be initialized")
+        }
+        do {
+            let dictionary = try PlistConverter.dictionary(fromFile: "aerospaceDiscoveryQuizFacts", ofType: "plist")
+            let facts = try FactsUnarchiver.fetch(fromDictionary: dictionary)
+            self.quizGame = AerospaceQuizGame(facts: facts,
+                                              firstRowFactLabel: firstRowLabel,
+                                              secondRowFactLabel: secondRowLabel,
+                                              thirdRowFactLabel: thirdRowLabel,
+                                              fourthRowFactLabel: fourthRowLabel,
+                                              timerLabel: timerLabel,
+                                              buttonsHandler: buttonsHandler)
+        } catch let error {
+            fatalError("\(error)")
+        }
+        
+        
         self.setOptionButtonsTags() // Setting Button tags, matching Enums for easier handling through the enum
         self.setViewRoundCorners()
-        quizGame.setQuizRound()
-
-        // Do any additional setup after loading the view.
+        quizGame?.setQuizRound()
     }
     
     @IBAction func orderButtonPressed(_ sender: UIButton) {
-        quizGame.updateScreen()
+        quizGame?.moveFact(sender)
     }
     
+    @IBAction func controlButtonPressed() {
+        quizGame?.setQuizRound()
+    }
     // MARK: - Helper methods
     
     private func setOptionButtonsTags () {
