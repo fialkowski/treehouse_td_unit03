@@ -56,12 +56,10 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="xzp-N4-5sC" userLabel="firstRowStackView">
                                                 <rect key="frame" x="10" y="0.0" width="384" height="147.66666666666666"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First row fact goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsT-k9-gai" userLabel="firstRowLabel">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqc-Wf-iUI" userLabel="firstRowFactButton">
                                                         <rect key="frame" x="0.0" y="0.0" width="332.33333333333331" height="147.66666666666666"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="First Fact Goes Here"/>
+                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofe-OE-41u" userLabel="firstRowDownButton">
                                                         <rect key="frame" x="332.33333333333331" y="0.0" width="51.666666666666686" height="147.66666666666666"/>
                                                         <constraints>
@@ -74,12 +72,8 @@
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="vsT-k9-gai" firstAttribute="top" secondItem="xzp-N4-5sC" secondAttribute="top" id="7zJ-VM-R6R"/>
                                                     <constraint firstItem="Ofe-OE-41u" firstAttribute="top" secondItem="xzp-N4-5sC" secondAttribute="top" id="ScU-1h-nPx"/>
-                                                    <constraint firstItem="Ofe-OE-41u" firstAttribute="leading" secondItem="vsT-k9-gai" secondAttribute="trailing" id="eu7-IF-Tzl"/>
-                                                    <constraint firstAttribute="bottom" secondItem="vsT-k9-gai" secondAttribute="bottom" id="rrm-SU-tvp"/>
                                                     <constraint firstAttribute="bottom" secondItem="Ofe-OE-41u" secondAttribute="bottom" id="sVr-0a-nAI"/>
-                                                    <constraint firstItem="vsT-k9-gai" firstAttribute="leading" secondItem="xzp-N4-5sC" secondAttribute="leading" id="tv9-C1-htL"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -97,12 +91,10 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQO-FW-67i" userLabel="secondRowStackView">
                                                 <rect key="frame" x="10" y="0.0" width="384" height="147.33333333333334"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second row fact goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g94-2z-Ydc" userLabel="secondRowLabel">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t08-cn-bLQ" userLabel="secondRowFactButton">
                                                         <rect key="frame" x="0.0" y="0.0" width="332.33333333333331" height="147.33333333333334"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="Second Fact Goes Here"/>
+                                                    </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NvI-jy-fen" userLabel="secondRowButtonsStackView">
                                                         <rect key="frame" x="332.33333333333331" y="0.0" width="51.666666666666686" height="147.33333333333334"/>
                                                         <subviews>
@@ -147,12 +139,10 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXf-6H-vWf" userLabel="thirdRowStackView">
                                                 <rect key="frame" x="10" y="0.0" width="384" height="147.66666666666666"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third row fact goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zV-pi-CDT" userLabel="thirdRowLabel">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0D-EY-D5g" userLabel="thirdRowFactButton">
                                                         <rect key="frame" x="0.0" y="0.0" width="332.33333333333331" height="147.66666666666666"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="Third Fact Goes here"/>
+                                                    </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iAg-0g-Udy" userLabel="thirdRowButtonsStackView">
                                                         <rect key="frame" x="332.33333333333331" y="0.0" width="51.666666666666686" height="147.66666666666666"/>
                                                         <subviews>
@@ -197,12 +187,10 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pM0-v1-hDz" userLabel="fourthRowStackView">
                                                 <rect key="frame" x="10" y="0.0" width="384" height="147.33333333333334"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fouth fact goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKn-IW-IdZ" userLabel="fourthRowLabel">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d6-Ny-MJ9" userLabel="fourthRowFactButton">
                                                         <rect key="frame" x="0.0" y="0.0" width="332.33333333333331" height="147.33333333333334"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="Fourth Fact Goes Here"/>
+                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIe-AG-MwL" userLabel="fourthRowUpButton">
                                                         <rect key="frame" x="332.33333333333331" y="0.0" width="51.666666666666686" height="147.33333333333334"/>
                                                         <constraints>
@@ -273,14 +261,14 @@
                     <connections>
                         <outlet property="controlButton" destination="0yf-vX-DOy" id="AHP-bX-q0b"/>
                         <outlet property="firstRowDownButton" destination="Ofe-OE-41u" id="zpQ-IO-FBs"/>
-                        <outlet property="firstRowLabel" destination="vsT-k9-gai" id="Knv-sY-b7F"/>
-                        <outlet property="fourthRowLabel" destination="aKn-IW-IdZ" id="K3m-O5-dTn"/>
+                        <outlet property="firstRowFactButton" destination="uqc-Wf-iUI" id="dX0-2e-ZNi"/>
+                        <outlet property="fourthRowFactButton" destination="5d6-Ny-MJ9" id="ODa-Xo-BU9"/>
                         <outlet property="fourthRowUpButton" destination="mIe-AG-MwL" id="zHr-0X-Rof"/>
                         <outlet property="secondRowDownButton" destination="SsR-kB-w7A" id="Wgx-X5-wxm"/>
-                        <outlet property="secondRowLabel" destination="g94-2z-Ydc" id="t7Z-cW-dki"/>
+                        <outlet property="secondRowFactButton" destination="t08-cn-bLQ" id="fjV-m0-lZB"/>
                         <outlet property="secondRowUpButton" destination="1d4-Jn-Nf3" id="8iN-lj-gaV"/>
                         <outlet property="thirdRowDownButton" destination="F6u-4u-mgo" id="4Hs-Cz-31G"/>
-                        <outlet property="thirdRowLabel" destination="1zV-pi-CDT" id="0Wz-LX-d0J"/>
+                        <outlet property="thirdRowFactButton" destination="U0D-EY-D5g" id="dDY-vI-6zV"/>
                         <outlet property="thirdRowUpButton" destination="C2U-8X-S6X" id="3aF-vn-YQO"/>
                         <outlet property="timerLabel" destination="xjO-7k-BMj" id="cv1-s8-c1Q"/>
                         <outletCollection property="factRowViews" destination="vZR-c5-mHR" collectionClass="NSMutableArray" id="oLM-46-s20"/>

@@ -67,32 +67,37 @@ protocol QuizGameFact {
 protocol QuizGameButtonsHandler {
     var orderButtons: [UIButton] { get }
     var controlButton: UIButton { get }
+    var firstRowFactButton: UIButton { get }
+    var secondRowFactButton: UIButton { get }
+    var thirdRowFactButton: UIButton { get }
+    var fourthRowFactButton: UIButton { get }
     
-    init(orderButtons: [UIButton], controlButton: UIButton)
+    init(orderButtons: [UIButton],
+         controlButton: UIButton,
+         firstRowFact: UIButton,
+         secondRowFact: UIButton,
+         thirdRowFact: UIButton,
+         fourthRowFact: UIButton)
     
+    func swapFacts(_ sender: UIButton)
     func setIcons ()
-    func setTimerScreen()
-    func setResultScreen(forAnswer answer: Bool)
+    func setTimerScreenFor(firstFact: String,
+                           secondFact: String,
+                           thirdFact: String,
+                           fourthFact: String)
+    func setResultScreen(for facts: [QuizGameFact])
 }
 
 protocol QuizGame {
     var buttonsHandler: QuizGameButtonsHandler { get }
-    var firstRowFactLabel: UILabel { get }
-    var secondRowFactLabel: UILabel { get }
-    var thirdRowFactLabel: UILabel { get }
-    var fourthRowFactLabel: UILabel { get }
     var facts: [QuizGameFact] { get }
     var timer: CountdownTimer { get }
     
     init (facts: [QuizGameFact],
-          firstRowFactLabel: UILabel,
-          secondRowFactLabel: UILabel,
-          thirdRowFactLabel: UILabel,
-          fourthRowFactLabel: UILabel,
           timerLabel: UILabel,
           buttonsHandler: QuizGameButtonsHandler)
     
-    func moveFact(_ sender: UIButton)
+    func swapFacts(_ sender: UIButton)
     func setQuizRound ()
     func checkScreen()
     func shakeAction()
@@ -140,10 +145,23 @@ class FactsUnarchiver {
 class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
     var orderButtons: [UIButton]
     var controlButton: UIButton
+    var firstRowFactButton: UIButton
+    var secondRowFactButton: UIButton
+    var thirdRowFactButton: UIButton
+    var fourthRowFactButton: UIButton
     
-    required init(orderButtons: [UIButton], controlButton: UIButton) {
+    required init(orderButtons: [UIButton],
+                  controlButton: UIButton,
+                  firstRowFact: UIButton,
+                  secondRowFact: UIButton,
+                  thirdRowFact: UIButton,
+                  fourthRowFact: UIButton){
         self.orderButtons = orderButtons
         self.controlButton = controlButton
+        self.firstRowFactButton = firstRowFact
+        self.secondRowFactButton = secondRowFact
+        self.thirdRowFactButton = thirdRowFact
+        self.fourthRowFactButton = fourthRowFact
     }
     
     func setIcons() {
@@ -153,18 +171,57 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         }
     }
     
-    func setTimerScreen() {
+    func swapFacts(_ sender: UIButton) {
+        switch sender.tag {
+        case OrderChangeButton.firstDown.rawValue, OrderChangeButton.secondUp.rawValue :
+            do {
+                let factKeyBuffer = firstRowFactButton.title(for: .normal)
+                firstRowFactButton.setTitle(secondRowFactButton.title(for: .normal), for: .normal)
+                secondRowFactButton.setTitle(factKeyBuffer, for: .normal)
+            }
+        case OrderChangeButton.secondDown.rawValue, OrderChangeButton.thirdUp.rawValue :
+            do {
+                let factKeyBuffer = secondRowFactButton.title(for: .normal)
+                secondRowFactButton.setTitle(thirdRowFactButton.title(for: .normal), for: .normal)
+                thirdRowFactButton.setTitle(factKeyBuffer, for: .normal)
+            }
+        case OrderChangeButton.thirdDown.rawValue, OrderChangeButton.fourthUp.rawValue :
+            do {
+                let factKeyBuffer = thirdRowFactButton.title(for: .normal)
+                thirdRowFactButton.setTitle(fourthRowFactButton.title(for: .normal), for: .normal)
+                fourthRowFactButton.setTitle(factKeyBuffer, for: .normal)
+            }
+        default : break
+        }
+    }
+    
+    func setTimerScreenFor(firstFact: String,
+                           secondFact: String,
+                           thirdFact: String,
+                           fourthFact: String) {
         for orderButton in orderButtons {
             orderButton.isEnabled = true
         }
         controlButton.isHidden = true
+        firstRowFactButton.isEnabled = false
+        firstRowFactButton.setTitle(firstFact, for: .normal)
+        secondRowFactButton.isEnabled = false
+        secondRowFactButton.setTitle(secondFact, for: .normal)
+        thirdRowFactButton.isEnabled = false
+        thirdRowFactButton.setTitle(thirdFact, for: .normal)
+        fourthRowFactButton.isEnabled = false
+        fourthRowFactButton.setTitle(fourthFact, for: .normal)
     }
     
-    func setResultScreen(forAnswer answer: Bool) {
+    func setResultScreen(for facts: [QuizGameFact]) {
         for orderButton in orderButtons {
             orderButton.isEnabled = false
         }
-        showControlButton(forAnswer: answer)
+        firstRowFactButton.isEnabled = true
+        secondRowFactButton.isEnabled = true
+        thirdRowFactButton.isEnabled = true
+        fourthRowFactButton.isEnabled = true
+        showControlButton(forAnswer: screenIsInOrder(for: facts))
     }
     
     private func showControlButton(forAnswer answer: Bool) {
@@ -174,85 +231,16 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         }
         controlButton.isHidden = false
     }
-}
-
-class AerospaceQuizGame: QuizGame {
-    var buttonsHandler: QuizGameButtonsHandler
-    var firstRowFactLabel: UILabel
-    var secondRowFactLabel: UILabel
-    var thirdRowFactLabel: UILabel
-    var fourthRowFactLabel: UILabel
-    var facts: [QuizGameFact]
-    var usedFacts: [QuizGameFact] = []
-    var timer: CountdownTimer
-     
-    required init(facts: [QuizGameFact],
-                  firstRowFactLabel: UILabel,
-                  secondRowFactLabel: UILabel,
-                  thirdRowFactLabel: UILabel,
-                  fourthRowFactLabel: UILabel,
-                  timerLabel: UILabel,
-                  buttonsHandler: QuizGameButtonsHandler) {
-        self.facts = facts
-        self.firstRowFactLabel = firstRowFactLabel
-        self.secondRowFactLabel = secondRowFactLabel
-        self.thirdRowFactLabel = thirdRowFactLabel
-        self.fourthRowFactLabel = fourthRowFactLabel
-        self.buttonsHandler = buttonsHandler
-        timer = CountdownTimer(timerLabel: timerLabel)
-    }
     
-    func setQuizRound () {
-        timer.set(quizGame: self)
-        firstRowFactLabel.text = getRandomFact().description
-        secondRowFactLabel.text = getRandomFact().description
-        thirdRowFactLabel.text = getRandomFact().description
-        fourthRowFactLabel.text = getRandomFact().description
-        buttonsHandler.setTimerScreen()
-        timer.startTimer()
-    }
-    
-    func moveFact(_ sender: UIButton) {
-        switch sender.tag {
-        case OrderChangeButton.firstDown.rawValue, OrderChangeButton.secondUp.rawValue :
-            do {
-                let factKeyBuffer = firstRowFactLabel.text
-                firstRowFactLabel.text = secondRowFactLabel.text
-                secondRowFactLabel.text = factKeyBuffer
-            }
-        case OrderChangeButton.secondDown.rawValue, OrderChangeButton.thirdUp.rawValue :
-            do {
-                let factKeyBuffer = secondRowFactLabel.text
-                secondRowFactLabel.text = thirdRowFactLabel.text
-                thirdRowFactLabel.text = factKeyBuffer
-            }
-        case OrderChangeButton.thirdDown.rawValue, OrderChangeButton.fourthUp.rawValue :
-            do {
-                let factKeyBuffer = thirdRowFactLabel.text
-                thirdRowFactLabel.text = fourthRowFactLabel.text
-                fourthRowFactLabel.text = factKeyBuffer
-            }
-        default : break
-        }
-    }
-    
-    func checkScreen() {
-        buttonsHandler.setResultScreen(forAnswer: isInCorrectOrder())
-    }
-    
-    func shakeAction() {
-        timer.endTimer()
-    }
-    
-    private func isInCorrectOrder() -> Bool {
-        var factDates = facts.filter{$0.description == firstRowFactLabel.text}
-        factDates += facts.filter{$0.description == secondRowFactLabel.text}
-        factDates += facts.filter{$0.description == thirdRowFactLabel.text}
-        factDates += facts.filter{$0.description == fourthRowFactLabel.text}
+    private func screenIsInOrder(for facts: [QuizGameFact]) -> Bool {
+        var factDates = facts.filter{$0.description == firstRowFactButton.title(for: .normal)}
+        factDates += facts.filter{$0.description == secondRowFactButton.title(for: .normal)}
+        factDates += facts.filter{$0.description == thirdRowFactButton.title(for: .normal)}
+        factDates += facts.filter{$0.description == fourthRowFactButton.title(for: .normal)}
         if factDates.count == 4 {
             if (factDates[0].date <= factDates[1].date) &&
-               (factDates[1].date <= factDates[2].date) &&
-               (factDates[2].date <= factDates[3].date) {
+                (factDates[1].date <= factDates[2].date) &&
+                (factDates[2].date <= factDates[3].date) {
                 return true
             } else {
                 return false
@@ -260,6 +248,43 @@ class AerospaceQuizGame: QuizGame {
         } else {
             return false
         }
+    }
+    
+}
+
+class AerospaceQuizGame: QuizGame {
+    var buttonsHandler: QuizGameButtonsHandler
+    var facts: [QuizGameFact]
+    var usedFacts: [QuizGameFact] = []
+    var timer: CountdownTimer
+     
+    required init(facts: [QuizGameFact],
+                  timerLabel: UILabel,
+                  buttonsHandler: QuizGameButtonsHandler) {
+        self.facts = facts
+        self.buttonsHandler = buttonsHandler
+        timer = CountdownTimer(timerLabel: timerLabel)
+    }
+    
+    func setQuizRound () {
+        timer.set(quizGame: self)
+        buttonsHandler.setTimerScreenFor(firstFact: getRandomFact().description,
+                                         secondFact: getRandomFact().description,
+                                         thirdFact: getRandomFact().description,
+                                         fourthFact: getRandomFact().description)
+        timer.startTimer()
+    }
+    
+    func swapFacts(_ sender: UIButton) {
+        buttonsHandler.swapFacts(sender) // Passing sender through
+    }
+    
+    func checkScreen() {
+        buttonsHandler.setResultScreen(for: facts)
+    }
+    
+    func shakeAction() {
+        timer.endTimer()
     }
     
     private func getRandomFact() -> QuizGameFact {

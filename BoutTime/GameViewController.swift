@@ -11,10 +11,11 @@ import UIKit
 class GameViewController: UIViewController {
 
     @IBOutlet var factRowViews: [UIView]!
-    @IBOutlet weak var firstRowLabel: UILabel!
-    @IBOutlet weak var secondRowLabel: UILabel!
-    @IBOutlet weak var thirdRowLabel: UILabel!
-    @IBOutlet weak var fourthRowLabel: UILabel!
+    @IBOutlet weak var firstRowFactButton: UIButton!
+    @IBOutlet weak var secondRowFactButton: UIButton!
+    @IBOutlet weak var thirdRowFactButton: UIButton!
+    @IBOutlet weak var fourthRowFactButton: UIButton!
+    
     @IBOutlet weak var timerLabel: UILabel!
     
     @IBOutlet weak var firstRowDownButton: UIButton!
@@ -45,12 +46,16 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.buttonsHandler = AerospaceQuizButtonsHandler(orderButtons: [firstRowDownButton,
-                                                                        secondRowUpButton,
-                                                                        secondRowDownButton,
-                                                                        thirdRowUpButton,
-                                                                        thirdRowDownButton,
-                                                                        fourthRowUpButton],
-                                                          controlButton: controlButton)
+                                                                         secondRowUpButton,
+                                                                         secondRowDownButton,
+                                                                         thirdRowUpButton,
+                                                                         thirdRowDownButton,
+                                                                         fourthRowUpButton],
+                                                          controlButton: controlButton,
+                                                          firstRowFact: firstRowFactButton,
+                                                          secondRowFact: secondRowFactButton,
+                                                          thirdRowFact: thirdRowFactButton,
+                                                          fourthRowFact: fourthRowFactButton)
         guard let buttonsHandler = buttonsHandler else {
             fatalError("Buttons Handler couldn't be initialized")
         }
@@ -58,10 +63,6 @@ class GameViewController: UIViewController {
             let dictionary = try PlistConverter.dictionary(fromFile: "aerospaceDiscoveryQuizFacts", ofType: "plist")
             let facts = try FactsUnarchiver.fetch(fromDictionary: dictionary)
             self.quizGame = AerospaceQuizGame(facts: facts,
-                                              firstRowFactLabel: firstRowLabel,
-                                              secondRowFactLabel: secondRowLabel,
-                                              thirdRowFactLabel: thirdRowLabel,
-                                              fourthRowFactLabel: fourthRowLabel,
                                               timerLabel: timerLabel,
                                               buttonsHandler: buttonsHandler)
         } catch let error {
@@ -75,7 +76,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func orderButtonPressed(_ sender: UIButton) {
-        quizGame?.moveFact(sender)
+        quizGame?.swapFacts(sender)
     }
     
     @IBAction func controlButtonPressed() {
