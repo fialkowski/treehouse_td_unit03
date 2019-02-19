@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var fourthRowFactButton: UIButton!
     
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var shakeToCompleteLabel: UILabel!
     
     @IBOutlet weak var firstRowDownButton: UIButton!
     @IBOutlet weak var secondRowUpButton: UIButton!
@@ -26,6 +27,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var fourthRowUpButton: UIButton!
     @IBOutlet weak var controlButton: UIButton!
     
+    var senderFactButton: UIButton?
     var quizGame: QuizGame?
     var buttonsHandler: QuizGameButtonsHandler?
 
@@ -64,6 +66,7 @@ class GameViewController: UIViewController {
             let facts = try FactsUnarchiver.fetch(fromDictionary: dictionary)
             self.quizGame = AerospaceQuizGame(facts: facts,
                                               timerLabel: timerLabel,
+                                              shakeLabel: shakeToCompleteLabel,
                                               buttonsHandler: buttonsHandler)
         } catch let error {
             fatalError("\(error)")
@@ -72,6 +75,7 @@ class GameViewController: UIViewController {
         
         self.setOptionButtonsTags() // Setting Button tags, matching Enums for easier handling through the enum
         self.setViewRoundCorners()
+        buttonsHandler.setButtonProperties()
         quizGame?.setQuizRound()
     }
     
@@ -82,6 +86,36 @@ class GameViewController: UIViewController {
     @IBAction func controlButtonPressed() {
         quizGame?.setQuizRound()
     }
+    
+    @IBAction func factButtonPress(_ sender: UIButton) {
+        self.senderFactButton = sender
+        self.performSegue(withIdentifier: "gameToWeb", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /*if segue.identifier == "gameplayToScore" {
+            
+            guard let correctAnswers = gameplay?.correctAnswers,
+                let numberOfRounds = gameplay?.numberOfRounds
+                else {
+                    fatalError("Critical Error! Most likely the gameplay variable failed to initialize in the body of a GameplayViewController.")
+            }
+            let scoreViewController = segue.destination as! ScoreViewController
+            scoreViewController.scoreString = String(format: "%01d/%01d", correctAnswers, numberOfRounds + 1)
+        } else */if segue.identifier == "gameToWeb" {
+            
+            guard let title = self.senderFactButton?.currentTitle else {
+                fatalError("Critical Error! NO FACT BUTTON CAPTION BEEN SET!")
+            }
+            if let webViewController = segue.destination as? WebViewController {
+                webViewController.factCaption = title
+            }
+        }
+        
+    }
+    
+    
+    
     // MARK: - Helper methods
     
     private func setOptionButtonsTags () {

@@ -9,6 +9,18 @@
 import UIKit
 import Foundation
 
+extension UIFont {
+    struct QuizGameFont {
+        static var factDefault: UIFont { return UIFont(name:"HelveticaNeue", size: 17.0)! }
+    }
+}
+
+extension UIColor {
+    struct QuizGameFontColor {
+        static var factDefault: UIColor { return UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)}
+    }
+}
+
 enum OrderChangeButton: Int {
     case firstDown = 1
     case secondUp
@@ -17,28 +29,28 @@ enum OrderChangeButton: Int {
     case thirdDown
     case fourthUp
     
-    func icon(isSelected: Bool = false) -> UIImage {
+    func icon(isHighlighted: Bool = false) -> UIImage {
         var iconName: String = ""
         switch self {
         case .firstDown:
             do {
                 iconName = "downFull"
-                if isSelected {iconName += "Selected"}
+                if isHighlighted {iconName += "Selected"}
             }
         case .secondUp, .thirdUp:
             do {
                 iconName = "upHalf"
-                if isSelected {iconName += "Selected"}
+                if isHighlighted {iconName += "Selected"}
             }
         case .secondDown, .thirdDown:
             do {
                 iconName = "downHalf"
-                if isSelected {iconName += "Selected"}
+                if isHighlighted {iconName += "Selected"}
             }
         case .fourthUp:
             do {
                 iconName = "upFull"
-                if isSelected {iconName += "Selected"}
+                if isHighlighted {iconName += "Selected"}
             }
         }
         guard let image = UIImage(named: iconName) else {
@@ -80,7 +92,7 @@ protocol QuizGameButtonsHandler {
          fourthRowFact: UIButton)
     
     func swapFacts(_ sender: UIButton)
-    func setIcons ()
+    func setButtonProperties ()
     func setTimerScreenFor(firstFact: String,
                            secondFact: String,
                            thirdFact: String,
@@ -92,9 +104,11 @@ protocol QuizGame {
     var buttonsHandler: QuizGameButtonsHandler { get }
     var facts: [QuizGameFact] { get }
     var timer: CountdownTimer { get }
+    var shakeToCompleteLabel: UILabel { get }
     
     init (facts: [QuizGameFact],
           timerLabel: UILabel,
+          shakeLabel: UILabel,
           buttonsHandler: QuizGameButtonsHandler)
     
     func swapFacts(_ sender: UIButton)
@@ -164,11 +178,21 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         self.fourthRowFactButton = fourthRowFact
     }
     
-    func setIcons() {
+    func setButtonProperties() {
         for orderButton in orderButtons {
-            let image = OrderChangeButton(rawValue: orderButton.tag)?.icon(isSelected: true)
-            orderButton.setImage(image, for: .selected)
+            let highlightedImage = OrderChangeButton(rawValue: orderButton.tag)?.icon(isHighlighted: true)
+            let defaultImage = OrderChangeButton(rawValue: orderButton.tag)?.icon()
+            orderButton.setImage(highlightedImage, for: .highlighted)
+            orderButton.setImage(defaultImage, for: .normal)
         }
+        firstRowFactButton.titleLabel?.font = UIFont.QuizGameFont.factDefault
+        firstRowFactButton.setTitleColor(UIColor.QuizGameFontColor.factDefault, for: .disabled)
+        secondRowFactButton.titleLabel?.font = UIFont.QuizGameFont.factDefault
+        secondRowFactButton.setTitleColor(UIColor.QuizGameFontColor.factDefault, for: .disabled)
+        thirdRowFactButton.titleLabel?.font = UIFont.QuizGameFont.factDefault
+        thirdRowFactButton.setTitleColor(UIColor.QuizGameFontColor.factDefault, for: .disabled)
+        fourthRowFactButton.titleLabel?.font = UIFont.QuizGameFont.factDefault
+        fourthRowFactButton.setTitleColor(UIColor.QuizGameFontColor.factDefault, for: .disabled)
     }
     
     func swapFacts(_ sender: UIButton) {
@@ -257,17 +281,21 @@ class AerospaceQuizGame: QuizGame {
     var facts: [QuizGameFact]
     var usedFacts: [QuizGameFact] = []
     var timer: CountdownTimer
+    var shakeToCompleteLabel: UILabel
      
     required init(facts: [QuizGameFact],
                   timerLabel: UILabel,
+                  shakeLabel: UILabel,
                   buttonsHandler: QuizGameButtonsHandler) {
         self.facts = facts
         self.buttonsHandler = buttonsHandler
+        self.shakeToCompleteLabel = shakeLabel
         timer = CountdownTimer(timerLabel: timerLabel)
     }
     
     func setQuizRound () {
         timer.set(quizGame: self)
+        shakeToCompleteLabel.isHidden = false
         buttonsHandler.setTimerScreenFor(firstFact: getRandomFact().description,
                                          secondFact: getRandomFact().description,
                                          thirdFact: getRandomFact().description,
@@ -280,6 +308,7 @@ class AerospaceQuizGame: QuizGame {
     }
     
     func checkScreen() {
+        shakeToCompleteLabel.isHidden = true
         buttonsHandler.setResultScreen(for: facts)
     }
     
