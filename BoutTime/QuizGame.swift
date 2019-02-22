@@ -9,19 +9,19 @@
 import UIKit
 import Foundation
 
-extension UIFont {
+extension UIFont { //Extension to set game font
     struct QuizGameFont {
         static var factDefault: UIFont { return UIFont(name:"Avenir", size: 17.0)! }
     }
 }
 
-extension UIColor {
+extension UIColor { //Extension to set game font color
     struct QuizGameFontColor {
         static var factDefault: UIColor { return UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)}
     }
 }
 
-enum OrderChangeButton: Int {
+enum OrderChangeButton: Int { //Enum for handling order buttons by their tags
     case firstDown = 1
     case secondUp
     case secondDown
@@ -29,7 +29,7 @@ enum OrderChangeButton: Int {
     case thirdDown
     case fourthUp
     
-    func icon(isHighlighted: Bool = false) -> UIImage {
+    func icon(isHighlighted: Bool = false) -> UIImage { //Returns an image icon
         var iconName: String = ""
         switch self {
         case .firstDown:
@@ -60,7 +60,7 @@ enum OrderChangeButton: Int {
     }
 }
 
-enum QuizSourceError: Error {
+enum QuizSourceError: Error { //Error handling for property list conversion static methods
     case invalidResource
     case conversionFailure(description: String)
 }
@@ -69,14 +69,19 @@ enum FactError: Error { //Used specifically for Fact Struct
     case wrongDate(detail: String)
 }
 
-protocol QuizGameFact {
+enum InformationLabel: String { //Captions for information labels
+    case shake = "Shake to complete"
+    case tapAFact = "Tap a fact for information"
+}
+
+protocol QuizGameFact { // fact custom type
     var description: String { get }
     var date: Date { get }
     
     init(event desctription: String, at date: Date)
 }
 
-protocol QuizGameButtonsHandler {
+protocol QuizGameButtonsHandler { // for handling buttons of the QuizGameViewController
     var orderButtons: [UIButton] { get }
     var controlButton: UIButton { get }
     var firstRowFactButton: UIButton { get }
@@ -100,7 +105,7 @@ protocol QuizGameButtonsHandler {
     func setResultScreen(for facts: [QuizGameFact], isLastScreen: Bool) -> Int
 }
 
-protocol QuizGame {
+protocol QuizGame { //Main game logic class
     var gameViewController: UIViewController { get }
     var buttonsHandler: QuizGameButtonsHandler { get }
     var facts: [QuizGameFact] { get }
@@ -124,7 +129,7 @@ protocol QuizGame {
     func shakeAction()
 }
 
-struct AerospaceFact: QuizGameFact {
+struct AerospaceFact: QuizGameFact { //declaring custom type for storing facts
     var description: String
     var date: Date
     private let calendar = Calendar(identifier: .gregorian)
@@ -135,7 +140,7 @@ struct AerospaceFact: QuizGameFact {
     }
 }
 
-class PlistConverter {
+class PlistConverter { // Converts property list to NSDictionary
     static func dictionary(fromFile name: String, ofType type: String) throws -> [String: AnyObject] {
         guard let path = Bundle.main.path(forResource: name, ofType: type) else {
             throw QuizSourceError.invalidResource
@@ -147,7 +152,7 @@ class PlistConverter {
     }
 }
 
-class FactsUnarchiver {
+class FactsUnarchiver { // Fills game facts dictionary
     static func fetch(fromDictionary dictionary: [String:AnyObject]) throws -> [AerospaceFact] {
         var inventory: [AerospaceFact] = []
         for (key, value) in dictionary {
@@ -163,8 +168,8 @@ class FactsUnarchiver {
     }
 }
 
-class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
-    var orderButtons: [UIButton]
+class AerospaceQuizButtonsHandler: QuizGameButtonsHandler { // declaring buttons handler class
+    var orderButtons: [UIButton] // storing order changing buttons as an array
     var controlButton: UIButton
     var firstRowFactButton: UIButton
     var secondRowFactButton: UIButton
@@ -185,7 +190,7 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         self.fourthRowFactButton = fourthRowFact
     }
     
-    func setButtonProperties() {
+    func setButtonProperties() { // setting buttons parameters
         for orderButton in orderButtons {
             let highlightedImage = OrderChangeButton(rawValue: orderButton.tag)?.icon(isHighlighted: true)
             let defaultImage = OrderChangeButton(rawValue: orderButton.tag)?.icon()
@@ -202,7 +207,7 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         fourthRowFactButton.setTitleColor(UIColor.QuizGameFontColor.factDefault, for: .disabled)
     }
     
-    func swapFacts(_ sender: UIButton) {
+    func swapFacts(_ sender: UIButton) { // swaps facts up and down
         switch sender.tag {
         case OrderChangeButton.firstDown.rawValue, OrderChangeButton.secondUp.rawValue :
             do {
@@ -226,7 +231,7 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         }
     }
     
-    func setTimerScreenFor(firstFact: String,
+    func setTimerScreenFor(firstFact: String, // sets game screen
                            secondFact: String,
                            thirdFact: String,
                            fourthFact: String) {
@@ -244,7 +249,7 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         fourthRowFactButton.setTitle(fourthFact, for: .normal)
     }
     
-    func setResultScreen(for facts: [QuizGameFact], isLastScreen: Bool) -> Int {
+    func setResultScreen(for facts: [QuizGameFact], isLastScreen: Bool) -> Int { // sets check screen and returns 1 if the order is correct
         for orderButton in orderButtons {
             orderButton.isEnabled = false
         }
@@ -261,7 +266,7 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         }
     }
     
-    private func showControlButton(forAnswer answer: Bool, lastScreen: Bool) {
+    private func showControlButton(forAnswer answer: Bool, lastScreen: Bool) { // sets control button icon for varios states
         switch lastScreen {
         case true: do {
                 switch answer {
@@ -279,7 +284,7 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         controlButton.isHidden = false
     }
     
-    private func screenIsInOrder(for facts: [QuizGameFact]) -> Bool {
+    private func screenIsInOrder(for facts: [QuizGameFact]) -> Bool { // creates a temporary array and checks if the dates are in correst order
         var factDates = facts.filter{$0.description == firstRowFactButton.title(for: .normal)}
         factDates += facts.filter{$0.description == secondRowFactButton.title(for: .normal)}
         factDates += facts.filter{$0.description == thirdRowFactButton.title(for: .normal)}
@@ -332,6 +337,7 @@ class AerospaceQuizGame: QuizGame {
         }
         roundsPlayed += 1
         timer.set(quizGame: self)
+        shakeToCompleteLabel.text = InformationLabel.shake.rawValue
         shakeToCompleteLabel.isHidden = false
         buttonsHandler.setTimerScreenFor(firstFact: getRandomFact().description,
                                          secondFact: getRandomFact().description,
@@ -345,7 +351,7 @@ class AerospaceQuizGame: QuizGame {
     }
     
     func checkScreen() {
-        shakeToCompleteLabel.isHidden = true
+        shakeToCompleteLabel.text = InformationLabel.tapAFact.rawValue
         correctAnswers += buttonsHandler.setResultScreen(for: facts, isLastScreen: (numberOfRounds == roundsPlayed))
     }
     
