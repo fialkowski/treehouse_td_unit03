@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A12C3E9221F7B180067732D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A12C3E8221F7B180067732D /* Assets.xcassets */; };
+		8A12C3EB221F7F270067732D /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12C3EA221F7F270067732D /* ScoreViewController.swift */; };
 		8A74C1EF221BB92800A32421 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74C1EE221BB92800A32421 /* WebViewController.swift */; };
 		8AB0E0A122166B8E008448F9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB0E0A022166B8E008448F9 /* GameViewController.swift */; };
 		8AB0E0A322166CDD008448F9 /* QuizGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB0E0A222166CDD008448F9 /* QuizGame.swift */; };
@@ -15,7 +17,6 @@
 		8AC2B15E2215006F00314B93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2B15D2215006F00314B93 /* AppDelegate.swift */; };
 		8AC2B1602215006F00314B93 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2B15F2215006F00314B93 /* SplashViewController.swift */; };
 		8AC2B1632215006F00314B93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AC2B1612215006F00314B93 /* Main.storyboard */; };
-		8AC2B1652215007500314B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AC2B1642215007500314B93 /* Assets.xcassets */; };
 		8AC2B1682215007500314B93 /* BoutTime.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AC2B1662215007500314B93 /* BoutTime.storyboard */; };
 		8AC2B1732215007500314B93 /* BoutTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2B1722215007500314B93 /* BoutTimeUITests.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A12C3E8221F7B180067732D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8A12C3EA221F7F270067732D /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		8A74C1EE221BB92800A32421 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8AB0E0A022166B8E008448F9 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8AB0E0A222166CDD008448F9 /* QuizGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGame.swift; sourceTree = "<group>"; };
@@ -40,7 +43,6 @@
 		8AC2B15D2215006F00314B93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AC2B15F2215006F00314B93 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		8AC2B1622215006F00314B93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8AC2B1642215007500314B93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8AC2B1672215007500314B93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BoutTime.storyboard; sourceTree = "<group>"; };
 		8AC2B1692215007500314B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AC2B16E2215007500314B93 /* BoutTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoutTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,12 +94,13 @@
 				8AB0E0A222166CDD008448F9 /* QuizGame.swift */,
 				8AB0E0A6221A5599008448F9 /* CountdownTimer.swift */,
 				8AB0E0A022166B8E008448F9 /* GameViewController.swift */,
+				8A12C3EA221F7F270067732D /* ScoreViewController.swift */,
 				8A74C1EE221BB92800A32421 /* WebViewController.swift */,
 				8AC2B1612215006F00314B93 /* Main.storyboard */,
-				8AC2B1642215007500314B93 /* Assets.xcassets */,
 				8AC2B1662215007500314B93 /* BoutTime.storyboard */,
 				8AC2B1692215007500314B93 /* Info.plist */,
 				8AB0E0A4221867C2008448F9 /* aerospaceDiscoveryQuizFacts.plist */,
+				8A12C3E8221F7B180067732D /* Assets.xcassets */,
 			);
 			path = BoutTime;
 			sourceTree = "<group>";
@@ -193,8 +196,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AC2B1682215007500314B93 /* BoutTime.storyboard in Resources */,
-				8AC2B1652215007500314B93 /* Assets.xcassets in Resources */,
 				8AB0E0A5221867C2008448F9 /* aerospaceDiscoveryQuizFacts.plist in Resources */,
+				8A12C3E9221F7B180067732D /* Assets.xcassets in Resources */,
 				8AC2B1632215006F00314B93 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +220,7 @@
 				8A74C1EF221BB92800A32421 /* WebViewController.swift in Sources */,
 				8AB0E0A322166CDD008448F9 /* QuizGame.swift in Sources */,
 				8AC2B1602215006F00314B93 /* SplashViewController.swift in Sources */,
+				8A12C3EB221F7F270067732D /* ScoreViewController.swift in Sources */,
 				8AB0E0A122166B8E008448F9 /* GameViewController.swift in Sources */,
 				8AC2B15E2215006F00314B93 /* AppDelegate.swift in Sources */,
 			);

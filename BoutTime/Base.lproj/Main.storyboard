@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SplashViewController" customModule="BoutTime" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="2uD-gn-1ki">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.031372549019607843" green="0.16862745098039217" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -44,27 +44,28 @@
             <objects>
                 <viewController id="BzM-F7-L9G" customClass="GameViewController" customModule="BoutTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qMp-A9-d64">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vtB-Se-Txi">
-                                <rect key="frame" x="10" y="30" width="355" height="551"/>
+                                <rect key="frame" x="10" y="30" width="394" height="620"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnc-sY-9uy" userLabel="firstRowView">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="130.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="147.66666666666666"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="xzp-N4-5sC" userLabel="firstRowStackView">
-                                                <rect key="frame" x="10" y="0.0" width="345" height="130.5"/>
+                                                <rect key="frame" x="10" y="0.0" width="384" height="147.66666666666666"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uqc-Wf-iUI" userLabel="firstRowFactButton">
-                                                        <rect key="frame" x="0.0" y="0.0" width="299.5" height="130.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="332.33333333333331" height="147.66666666666666"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <state key="normal" title="First Fact Goes Here"/>
                                                         <connections>
                                                             <action selector="factButtonPress:" destination="BzM-F7-L9G" eventType="touchUpInside" id="MaY-JO-MfU"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofe-OE-41u" userLabel="firstRowDownButton">
-                                                        <rect key="frame" x="299.5" y="0.0" width="45.5" height="130.5"/>
+                                                        <rect key="frame" x="332.33333333333331" y="0.0" width="51.666666666666686" height="147.66666666666666"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Ofe-OE-41u" secondAttribute="height" multiplier="35:100" id="E3H-dw-5rV"/>
                                                         </constraints>
@@ -89,30 +90,30 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKA-A7-3t0" userLabel="secondRowView">
-                                        <rect key="frame" x="0.0" y="140.5" width="355" height="130"/>
+                                        <rect key="frame" x="0.0" y="157.66666666666663" width="394" height="147.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQO-FW-67i" userLabel="secondRowStackView">
-                                                <rect key="frame" x="10" y="0.0" width="345" height="130"/>
+                                                <rect key="frame" x="10" y="0.0" width="384" height="147.33333333333334"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="t08-cn-bLQ" userLabel="secondRowFactButton">
-                                                        <rect key="frame" x="0.0" y="0.0" width="299.5" height="130"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="332.33333333333331" height="147.33333333333334"/>
                                                         <state key="normal" title="Second Fact Goes Here"/>
                                                         <connections>
                                                             <action selector="factButtonPress:" destination="BzM-F7-L9G" eventType="touchUpInside" id="567-bT-xra"/>
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NvI-jy-fen" userLabel="secondRowButtonsStackView">
-                                                        <rect key="frame" x="299.5" y="0.0" width="45.5" height="130"/>
+                                                        <rect key="frame" x="332.33333333333331" y="0.0" width="51.666666666666686" height="147.33333333333334"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1d4-Jn-Nf3" userLabel="secondRowUpButton">
-                                                                <rect key="frame" x="0.0" y="0.0" width="45.5" height="65"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="51.666666666666664" height="73.666666666666671"/>
                                                                 <state key="normal" image="upHalf"/>
                                                                 <connections>
                                                                     <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="krF-Uz-K4b"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SsR-kB-w7A" userLabel="secondRowDownButton">
-                                                                <rect key="frame" x="0.0" y="65" width="45.5" height="65"/>
+                                                                <rect key="frame" x="0.0" y="73.666666666666657" width="51.666666666666664" height="73.666666666666657"/>
                                                                 <state key="normal" image="downHalf"/>
                                                                 <connections>
                                                                     <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="Zxd-yH-dTW"/>
@@ -140,30 +141,30 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O4q-Ou-MVA" userLabel="thirdRowView">
-                                        <rect key="frame" x="0.0" y="280.5" width="355" height="130.5"/>
+                                        <rect key="frame" x="0.0" y="315" width="394" height="147.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXf-6H-vWf" userLabel="thirdRowStackView">
-                                                <rect key="frame" x="10" y="0.0" width="345" height="130.5"/>
+                                                <rect key="frame" x="10" y="0.0" width="384" height="147.66666666666666"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="U0D-EY-D5g" userLabel="thirdRowFactButton">
-                                                        <rect key="frame" x="0.0" y="0.0" width="299.5" height="130.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="332.33333333333331" height="147.66666666666666"/>
                                                         <state key="normal" title="Third Fact Goes here"/>
                                                         <connections>
                                                             <action selector="factButtonPress:" destination="BzM-F7-L9G" eventType="touchUpInside" id="J6U-Jc-Xp0"/>
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iAg-0g-Udy" userLabel="thirdRowButtonsStackView">
-                                                        <rect key="frame" x="299.5" y="0.0" width="45.5" height="130.5"/>
+                                                        <rect key="frame" x="332.33333333333331" y="0.0" width="51.666666666666686" height="147.66666666666666"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2U-8X-S6X" userLabel="thirdRowUpButton">
-                                                                <rect key="frame" x="0.0" y="0.0" width="45.5" height="65"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="51.666666666666664" height="73.666666666666671"/>
                                                                 <state key="normal" image="upHalf"/>
                                                                 <connections>
                                                                     <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="VgA-2v-5tp"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6u-4u-mgo" userLabel="thirdRowDownButton">
-                                                                <rect key="frame" x="0.0" y="65" width="45.5" height="65.5"/>
+                                                                <rect key="frame" x="0.0" y="73.666666666666686" width="51.666666666666664" height="74"/>
                                                                 <state key="normal" image="downHalf"/>
                                                                 <connections>
                                                                     <action selector="orderButtonPressed:" destination="BzM-F7-L9G" eventType="touchUpInside" id="XMx-nH-BlT"/>
@@ -191,20 +192,20 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZR-c5-mHR" userLabel="fourthRowView">
-                                        <rect key="frame" x="0.0" y="421" width="355" height="130"/>
+                                        <rect key="frame" x="0.0" y="472.66666666666669" width="394" height="147.33333333333331"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pM0-v1-hDz" userLabel="fourthRowStackView">
-                                                <rect key="frame" x="10" y="0.0" width="345" height="130"/>
+                                                <rect key="frame" x="10" y="0.0" width="384" height="147.33333333333334"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="5d6-Ny-MJ9" userLabel="fourthRowFactButton">
-                                                        <rect key="frame" x="0.0" y="0.0" width="299.5" height="130"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="332.33333333333331" height="147.33333333333334"/>
                                                         <state key="normal" title="Fourth Fact Goes Here"/>
                                                         <connections>
                                                             <action selector="factButtonPress:" destination="BzM-F7-L9G" eventType="touchUpInside" id="32H-0X-VJJ"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIe-AG-MwL" userLabel="fourthRowUpButton">
-                                                        <rect key="frame" x="299.5" y="0.0" width="45.5" height="130"/>
+                                                        <rect key="frame" x="332.33333333333331" y="0.0" width="51.666666666666686" height="147.33333333333334"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="mIe-AG-MwL" secondAttribute="height" multiplier="35:100" id="E0p-S6-zMG"/>
                                                         </constraints>
@@ -227,7 +228,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake to complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JeK-Df-TWt" userLabel="shakeToCompleteLabel">
-                                <rect key="frame" x="127.5" y="639" width="120.5" height="15"/>
+                                <rect key="frame" x="147" y="708" width="120.33333333333331" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="1NE-BI-tpo"/>
                                 </constraints>
@@ -236,7 +237,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yf-vX-DOy" userLabel="controlButton">
-                                <rect key="frame" x="117.5" y="599" width="140" height="35"/>
+                                <rect key="frame" x="137" y="668" width="140" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0yf-vX-DOy" secondAttribute="height" multiplier="4:1" id="cnF-K8-zQ7"/>
                                     <constraint firstAttribute="height" constant="35" id="dpQ-Jy-hnl"/>
@@ -247,7 +248,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjO-7k-BMj" userLabel="timerLabel">
-                                <rect key="frame" x="150.5" y="601" width="74.5" height="33"/>
+                                <rect key="frame" x="170" y="670" width="74.333333333333314" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -289,22 +290,77 @@
                         <outletCollection property="factRowViews" destination="cKA-A7-3t0" collectionClass="NSMutableArray" id="SU2-GM-uMk"/>
                         <outletCollection property="factRowViews" destination="rnc-sY-9uy" collectionClass="NSMutableArray" id="El6-Eb-e9W"/>
                         <segue destination="nGy-Sd-Yds" kind="presentation" identifier="gameToWeb" id="xTE-mP-TGZ"/>
+                        <segue destination="wjx-8Y-w5c" kind="show" identifier="gameToScore" id="viY-a1-Lg5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jwz-Vq-uIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1000" y="135"/>
         </scene>
+        <!--Score View Controller-->
+        <scene sceneID="YP5-LZ-PFT">
+            <objects>
+                <viewController id="wjx-8Y-w5c" customClass="ScoreViewController" customModule="BoutTime" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bMd-B4-1Za">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MR2-aq-yFJ" userLabel="playAgainButton">
+                                <rect key="frame" x="115.66666666666669" y="388.66666666666669" width="183" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="183" id="2wd-0m-x98"/>
+                                    <constraint firstAttribute="height" constant="59" id="52L-GM-rfz"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="playAgain"/>
+                                <connections>
+                                    <action selector="playAgain" destination="wjx-8Y-w5c" eventType="touchUpInside" id="II3-n1-tE2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score goes here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHh-YP-ouy" userLabel="scoreLabel">
+                                <rect key="frame" x="15" y="303.66666666666669" width="384" height="43"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="31"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You scored" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gln-jk-eMu">
+                                <rect key="frame" x="5" y="193.66666666666666" width="404" height="41"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.031372549020000001" green="0.16862745100000001" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="MR2-aq-yFJ" firstAttribute="centerX" secondItem="bMd-B4-1Za" secondAttribute="centerX" id="342-92-I8Y"/>
+                            <constraint firstItem="xHh-YP-ouy" firstAttribute="leading" secondItem="OfL-bO-VC8" secondAttribute="leading" constant="15" id="4mD-dz-tAb"/>
+                            <constraint firstItem="MR2-aq-yFJ" firstAttribute="top" secondItem="xHh-YP-ouy" secondAttribute="bottom" constant="42" id="6TB-D3-fzk"/>
+                            <constraint firstItem="xHh-YP-ouy" firstAttribute="top" secondItem="Gln-jk-eMu" secondAttribute="bottom" constant="69" id="BS7-uY-6Xa"/>
+                            <constraint firstItem="Gln-jk-eMu" firstAttribute="leading" secondItem="OfL-bO-VC8" secondAttribute="leading" constant="5" id="E1A-D4-0bx"/>
+                            <constraint firstItem="OfL-bO-VC8" firstAttribute="trailing" secondItem="Gln-jk-eMu" secondAttribute="trailing" constant="5" id="HY6-Bi-HrC"/>
+                            <constraint firstItem="MR2-aq-yFJ" firstAttribute="centerY" secondItem="bMd-B4-1Za" secondAttribute="centerY" constant="50" id="SKY-PP-ep9"/>
+                            <constraint firstItem="OfL-bO-VC8" firstAttribute="trailing" secondItem="xHh-YP-ouy" secondAttribute="trailing" constant="15" id="phw-up-0dt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OfL-bO-VC8"/>
+                    </view>
+                    <connections>
+                        <outlet property="scoreLabel" destination="xHh-YP-ouy" id="DfG-vV-g04"/>
+                        <segue destination="BzM-F7-L9G" kind="show" identifier="scoreToGame" id="hie-Lw-6VY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EUz-h7-d0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1896.8" y="132.68365817091455"/>
+        </scene>
         <!--Web View Controller-->
         <scene sceneID="Y3h-Dg-9cE">
             <objects>
                 <viewController id="nGy-Sd-Yds" customClass="WebViewController" customModule="BoutTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G1G-z0-Az2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6U-pv-sGg">
-                                <rect key="frame" x="0.0" y="67" width="375" height="600"/>
+                                <rect key="frame" x="0.0" y="71.666666666666686" width="414" height="664.33333333333326"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -312,13 +368,13 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h84-pw-9wT">
-                                <rect key="frame" x="0.0" y="20" width="375" height="47"/>
+                                <rect key="frame" x="0.0" y="19.999999999999996" width="414" height="51.666666666666657"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="webviewBar" translatesAutoresizingMaskIntoConstraints="NO" id="JaC-dj-yQJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="51.666666666666664"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoS-T1-NfP">
-                                        <rect key="frame" x="340" y="8.5" width="30" height="30"/>
+                                        <rect key="frame" x="379" y="11" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Ijk-c9-ia6"/>
                                             <constraint firstAttribute="width" constant="30" id="ZYM-3T-YFJ"/>
@@ -368,9 +424,13 @@
         <image name="downFull" width="158" height="457"/>
         <image name="downHalf" width="158" height="229"/>
         <image name="nextRoundSuccess" width="558" height="142"/>
+        <image name="playAgain" width="450" height="142"/>
         <image name="splashScreen" width="1333" height="2366"/>
         <image name="upFull" width="158" height="457"/>
         <image name="upHalf" width="158" height="229"/>
         <image name="webviewBar" width="1333" height="167"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hie-Lw-6VY"/>
+    </inferredMetricsTieBreakers>
 </document>

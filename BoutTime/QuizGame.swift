@@ -11,7 +11,7 @@ import Foundation
 
 extension UIFont {
     struct QuizGameFont {
-        static var factDefault: UIFont { return UIFont(name:"HelveticaNeue", size: 17.0)! }
+        static var factDefault: UIFont { return UIFont(name:"Avenir", size: 17.0)! }
     }
 }
 
@@ -97,19 +97,26 @@ protocol QuizGameButtonsHandler {
                            secondFact: String,
                            thirdFact: String,
                            fourthFact: String)
-    func setResultScreen(for facts: [QuizGameFact])
+    func setResultScreen(for facts: [QuizGameFact], isLastScreen: Bool) -> Int
 }
 
 protocol QuizGame {
+    var gameViewController: UIViewController { get }
     var buttonsHandler: QuizGameButtonsHandler { get }
     var facts: [QuizGameFact] { get }
     var timer: CountdownTimer { get }
     var shakeToCompleteLabel: UILabel { get }
     
-    init (facts: [QuizGameFact],
+    var numberOfRounds: Int { get }
+    var roundsPlayed: Int { get }
+    var correctAnswers: Int { get }
+    
+    init (gameViewController: UIViewController,
+          facts: [QuizGameFact],
           timerLabel: UILabel,
           shakeLabel: UILabel,
-          buttonsHandler: QuizGameButtonsHandler)
+          buttonsHandler: QuizGameButtonsHandler,
+          numberOfRounds: Int)
     
     func swapFacts(_ sender: UIButton)
     func setQuizRound ()
@@ -237,7 +244,7 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         fourthRowFactButton.setTitle(fourthFact, for: .normal)
     }
     
-    func setResultScreen(for facts: [QuizGameFact]) {
+    func setResultScreen(for facts: [QuizGameFact], isLastScreen: Bool) -> Int {
         for orderButton in orderButtons {
             orderButton.isEnabled = false
         }
@@ -245,13 +252,29 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
         secondRowFactButton.isEnabled = true
         thirdRowFactButton.isEnabled = true
         fourthRowFactButton.isEnabled = true
-        showControlButton(forAnswer: screenIsInOrder(for: facts))
+        let isCorrect = screenIsInOrder(for: facts)
+        showControlButton(forAnswer: isCorrect, lastScreen: isLastScreen)
+        if isCorrect {
+            return 1
+        } else {
+            return 0
+        }
     }
     
-    private func showControlButton(forAnswer answer: Bool) {
-        switch answer {
-        case true: controlButton.setImage(UIImage(named: "nextRoundSuccess"), for: .normal)
-        case false: controlButton.setImage(UIImage(named: "nextRoundFail"), for: .normal)
+    private func showControlButton(forAnswer answer: Bool, lastScreen: Bool) {
+        switch lastScreen {
+        case true: do {
+                switch answer {
+                case true: controlButton.setImage(UIImage(named: "showScoreSuccess"), for: .normal)
+                case false: controlButton.setImage(UIImage(named: "showScoreFail"), for: .normal)
+                }
+            }
+        case false: do {
+                switch answer {
+                case true: controlButton.setImage(UIImage(named: "nextRoundSuccess"), for: .normal)
+                case false: controlButton.setImage(UIImage(named: "nextRoundFail"), for: .normal)
+                }
+            }
         }
         controlButton.isHidden = false
     }
@@ -277,23 +300,37 @@ class AerospaceQuizButtonsHandler: QuizGameButtonsHandler {
 }
 
 class AerospaceQuizGame: QuizGame {
+    var gameViewController: UIViewController
+    var numberOfRounds: Int
+    var roundsPlayed: Int = 0
+    var correctAnswers: Int = 0
+    
     var buttonsHandler: QuizGameButtonsHandler
     var facts: [QuizGameFact]
     var usedFacts: [QuizGameFact] = []
     var timer: CountdownTimer
     var shakeToCompleteLabel: UILabel
      
-    required init(facts: [QuizGameFact],
+    required init(gameViewController: UIViewController,
+                  facts: [QuizGameFact],
                   timerLabel: UILabel,
                   shakeLabel: UILabel,
-                  buttonsHandler: QuizGameButtonsHandler) {
+                  buttonsHandler: QuizGameButtonsHandler,
+                  numberOfRounds: Int) {
         self.facts = facts
         self.buttonsHandler = buttonsHandler
         self.shakeToCompleteLabel = shakeLabel
         timer = CountdownTimer(timerLabel: timerLabel)
+        self.numberOfRounds = numberOfRounds
+        self.gameViewController = gameViewController
     }
     
     func setQuizRound () {
+        if roundsPlayed >= numberOfRounds {
+            roundsPlayed = 0
+            correctAnswers = 0
+        }
+        roundsPlayed += 1
         timer.set(quizGame: self)
         shakeToCompleteLabel.isHidden = false
         buttonsHandler.setTimerScreenFor(firstFact: getRandomFact().description,
@@ -309,7 +346,7 @@ class AerospaceQuizGame: QuizGame {
     
     func checkScreen() {
         shakeToCompleteLabel.isHidden = true
-        buttonsHandler.setResultScreen(for: facts)
+        correctAnswers += buttonsHandler.setResultScreen(for: facts, isLastScreen: (numberOfRounds == roundsPlayed))
     }
     
     func shakeAction() {

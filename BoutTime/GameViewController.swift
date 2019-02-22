@@ -30,6 +30,7 @@ class GameViewController: UIViewController {
     var senderFactButton: UIButton?
     var quizGame: QuizGame?
     var buttonsHandler: QuizGameButtonsHandler?
+    var numberOfRounds: Int = 3
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -64,10 +65,12 @@ class GameViewController: UIViewController {
         do {
             let dictionary = try PlistConverter.dictionary(fromFile: "aerospaceDiscoveryQuizFacts", ofType: "plist")
             let facts = try FactsUnarchiver.fetch(fromDictionary: dictionary)
-            self.quizGame = AerospaceQuizGame(facts: facts,
+            self.quizGame = AerospaceQuizGame(gameViewController: self,
+                                              facts: facts,
                                               timerLabel: timerLabel,
                                               shakeLabel: shakeToCompleteLabel,
-                                              buttonsHandler: buttonsHandler)
+                                              buttonsHandler: buttonsHandler,
+                                              numberOfRounds: numberOfRounds)
         } catch let error {
             fatalError("\(error)")
         }
@@ -84,7 +87,11 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func controlButtonPressed() {
-        quizGame?.setQuizRound()
+        if quizGame?.numberOfRounds == quizGame?.roundsPlayed {
+            self.performSegue(withIdentifier: "gameToScore", sender: self)
+        } else {
+            quizGame?.setQuizRound()
+        }
     }
     
     @IBAction func factButtonPress(_ sender: UIButton) {
@@ -93,16 +100,16 @@ class GameViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*if segue.identifier == "gameplayToScore" {
+        if segue.identifier == "gameToScore" {
             
-            guard let correctAnswers = gameplay?.correctAnswers,
-                let numberOfRounds = gameplay?.numberOfRounds
+            guard let correctAnswers = quizGame?.correctAnswers,
+                let numberOfRounds = quizGame?.numberOfRounds
                 else {
                     fatalError("Critical Error! Most likely the gameplay variable failed to initialize in the body of a GameplayViewController.")
             }
             let scoreViewController = segue.destination as! ScoreViewController
             scoreViewController.scoreString = String(format: "%01d/%01d", correctAnswers, numberOfRounds + 1)
-        } else */if segue.identifier == "gameToWeb" {
+        } else if segue.identifier == "gameToWeb" {
             
             guard let title = self.senderFactButton?.currentTitle else {
                 fatalError("Critical Error! NO FACT BUTTON CAPTION BEEN SET!")
