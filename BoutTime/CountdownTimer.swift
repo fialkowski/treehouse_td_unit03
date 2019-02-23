@@ -13,13 +13,13 @@ class CountdownTimer {
     var countdownTimer: Timer!
     var totalTime = 60
     var timerLabel: UILabel
-    var quizGame: QuizGame?
+    var quizGame: QuizGame? //passing the QuizGame compliant instance for checkScreen method triggering.
     
     init (timerLabel: UILabel) {
         self.timerLabel = timerLabel
     }
     
-    func set (quizGame: QuizGame) {
+    func set (quizGame: QuizGame) { //Using a method to pass the instance since the class doesn't exist while being intialized
         self.quizGame = quizGame
     }
     
@@ -52,11 +52,5 @@ class CountdownTimer {
         //     let hours: Int = totalSeconds / 3600
         return String(format: "%02d:%02d", minutes, seconds)
     }
-    
-    
-    // TODO: Fix the comments below!
-    // You will need to use the *Timer* class(it’s included in an import of UIKit), to create your countdownTimer variable.  Timer has a function called *scheduledTimer* that you will use to initialize your countdownTimer.  One parameter of *scheduledTimer* takes a selector, where you will select the method(a separate function that you create) to update your time.  To end an instance of *Timer*, you can use the *invalidate()* method from the class.  Also, since you are more than likely displaying your counter on a UILabel, you will have to format the time to a String that has the look you want.  You will need another variable to hold the value you are starting your countdown from as well.
-    
-    // I didn’t want to just straight up give you all the code, but if you still can’t figure out how to set one up from the hints I have given, let me know and I will paste in my example of a countdown timer, as I have a basic working countdown timer figured out, and I will check on this thread throughout the day to see if you get it working. Let me know!
     
 }

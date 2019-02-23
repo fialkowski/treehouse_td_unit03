@@ -24,7 +24,7 @@ class WebViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func factToURL (parse fact: String) -> URL {
+    private func factToURL (parse fact: String) -> URL { //formating a fact to work as a web link.
         let replaced = fact.replacingOccurrences(of: "[!@#$%&*(){} \\[\\]\"^<>.,:;']", with: "+", options: .regularExpression, range: nil).lowercased()
         let step1 = "https://en.wikipedia.org/w/index.php?search=" + replaced
         let step2 = step1 + "&title=Special:Search&go=Go"

@@ -360,7 +360,7 @@ class AerospaceQuizGame: QuizGame {
     }
     
     private func getRandomFact() -> QuizGameFact {
-        var infiniteLoopDebounce: Int = facts.count * 2
+        var infiniteLoopDebounce: Int = facts.count * 2 // Provisioning in case the infinite loop happens
         var repeatLoopFlag: Bool = false
         var returnFact: QuizGameFact?
         if usedFacts.count == facts.count {

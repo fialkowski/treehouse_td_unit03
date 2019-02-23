@@ -18,7 +18,6 @@ class ScoreViewController: UIViewController {
         super.viewDidLoad()
         scoreLabel.text = scoreString
 
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func playAgain() {
