@@ -30,7 +30,7 @@ class GameViewController: UIViewController {
     var senderFactButton: UIButton?
     var quizGame: QuizGame?
     var buttonsHandler: QuizGameButtonsHandler?
-    var numberOfRounds: Int = 3
+    var numberOfRounds: Int = 6
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -108,7 +108,7 @@ class GameViewController: UIViewController {
                     fatalError("Critical Error! Most likely the gameplay variable failed to initialize in the body of a GameplayViewController.")
             }
             let scoreViewController = segue.destination as! ScoreViewController
-            scoreViewController.scoreString = String(format: "%01d/%01d", correctAnswers, numberOfRounds + 1)
+            scoreViewController.scoreString = String(format: "%01d/%01d", correctAnswers, numberOfRounds)
         } else if segue.identifier == "gameToWeb" {
             
             guard let title = self.senderFactButton?.currentTitle else {
